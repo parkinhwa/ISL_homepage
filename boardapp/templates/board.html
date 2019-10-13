@@ -14,10 +14,10 @@
                 </tr>
             </thead>
             <tbody>
-                {% for board in board_page_post%}
+                {% for board in board_page_post %}
                 <tr>
-                    <td></td>
-                    <td><a href="{% url 'detail' board.id%}">{{board.subject}}</a></td>
+                    <td>추후 번호 입력</td>
+                    <td><a href="{% url 'detail' board.id%}">{{board.subject}}</a>{{board.comments.count}}</td>
                     <td>{{board.name}}</td>
                     <td>{{board.created_date}}</td>
                     <td>{{board.hits}}</td>

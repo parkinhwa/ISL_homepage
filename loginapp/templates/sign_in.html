@@ -1,6 +1,4 @@
 {% load staticfiles %}
-{% load socialaccount %}
-{% providers_medai_js %}
 <!doctype html>
 <html lang="en">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -8,15 +6,11 @@
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport"
-        content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
-    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Signin Template · Bootstrap</title>
+    <title>Signin</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/sign-in/">
 
@@ -37,37 +31,29 @@
 </head>
 
 <body class="text-center">
-    <form class="form-signin">
+    <form class="form-signin" method="POST" action="{%url 'sign_in'%}">
+        {% csrf_token %}
         <img class="mb-4" src="/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
         <h1 class="h3 mb-3 font-weight-normal">로그인 해주세요</h1>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <label for="inputEmail" class="sr-only">ID</label>
+        <input type="text" name="username" id="inputEmail" class="form-control" value="" placeholder="ID" required
+            autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <input type="password" name="password" id="inputPassword" class="form-control" value="" placeholder="Password"
+            required>
         <div class="checkbox mb-3">
-            <!-- <label>
+            <label>
                 <input type="checkbox" value="remember-me"> Remember me
-            </label> -->
+            </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        <a id="kakao-login-btn"></a>
-        <a href="http://developers.kakao.com/logout"></a>
-        <script type='text/javascript'>
-            //<![CDATA[
-            // 사용할 앱의 JavaScript 키를 설정해 주세요.
-            Kakao.init('b868029b206bf393fdb1edcce47112b2');
-            // 카카오 로그인 버튼을 생성합니다.
-            Kakao.Auth.createLoginButton({
-                container: '#kakao-login-btn',
-                success: function (authObj) {
-                    alert(JSON.stringify(authObj));
-                },
-                fail: function (err) {
-                    alert(JSON.stringify(err));
-                }
-            });
-            //]]>
-        </script>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
+        {% if messages %}
+        {% for message in messages %}
+        {{ message.tags }}
+        {{ message.message }}
+        {% endfor %}
+        {% endif %}
+
     </form>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
@@ -81,32 +67,3 @@
 </body>
 
 </html>
-<!-- <!DOCTYPE html>
-<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"/>
-<title>Login Demo - Kakao JavaScript SDK</title>
-<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-
-</head>
-<body>
-<a id="kakao-login-btn"></a>
-<a href="http://developers.kakao.com/logout"></a>
-<script type='text/javascript'>
-  //<![CDATA[
-    // 사용할 앱의 JavaScript 키를 설정해 주세요.
-    Kakao.init('b868029b206bf393fdb1edcce47112b2');
-    // 카카오 로그인 버튼을 생성합니다.
-    Kakao.Auth.createLoginButton({
-      container: '#kakao-login-btn',
-      success: function(authObj) {
-        alert(JSON.stringify(authObj));
-      },
-      fail: function(err) {
-         alert(JSON.stringify(err));
-      }
-    });
-  //]]>
-</script>
-
-</body>
-</html> -->

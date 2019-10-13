@@ -28,5 +28,6 @@ urlpatterns = [
     path('board/<int:board_id>/',boardapp.views.detail,name="detail"),
     path('sign_up',loginapp.views.sign_up,name="sign_up"),
     path('sign_in',loginapp.views.sign_in,name="sign_in"),
+    path('logout',loginapp.views.logout, name="logout"),
     path('accounts/',include('allauth.urls')),
 ]

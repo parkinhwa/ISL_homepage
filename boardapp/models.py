@@ -1,8 +1,9 @@
 from django.db import models
-
+from django.conf import settings
+from hitcount.models import HitCount, HitCountMixin
 # Create your models here.
 
-class DjangoBoard(models.Model):
+class DjangoBoard(models.Model,HitCountMixin):
       subject = models.CharField(max_length=50, blank=True)
       name = models.CharField(max_length=50, blank=True)
       created_date = models.DateField(null=True, blank=True)
