@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block contents %}
+
+<body>
+    <div class="container">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th>작성일</th>
+                    <th>조회수</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for board in board_page_post%}
+                <tr>
+                    <td></td>
+                    <td><a href="{% url 'detail' board.id%}">{{board.subject}}</a></td>
+                    <td>{{board.name}}</td>
+                    <td>{{board.created_date}}</td>
+                    <td>{{board.hits}}</td>
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+        <hr>
+        <div class="container">
+            <a href="{% url 'write' %}" class="btn btn-outline-dark" role="button" aria-pressed="true">글쓰기</a>
+            <a href="?page=1">First</a>
+            {%if board_page_post.has_previous%}
+
+            <a href="?page={{board_page_post.previous_page_number}}">Previous</a>
+            {%endif%}
+
+            <span>{{board_page_post.number}}</span>
+            <span>of</span>
+            <span>{{board_page_post.paginator.num_pages}}</span>
+
+            {%if board_page_post.has_next%}
+            <a href="?page={{board_page_post.next_page_number}}">Next</a>
+
+            {%endif%}
+            <a href="?page={{board_page_post.paginator.num_pages}}">Last</a>
+        </div>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+
+                <a class="page-link" href="#">Previous</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    </div>
+</body>
+{% endblock %}

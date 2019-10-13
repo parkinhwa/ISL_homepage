@@ -1,0 +1,17 @@
+{%extends 'base.html'%}
+{% block contents %}
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <h1>자세한 본문 내용입니다.</h1>
+                <br><br>
+                <h1> 제목 : {{board.subject}}</h1>
+                <p> 작성 날짜 : {{board.created_date}}</p>
+                <p> 자세한 본문 내용 : {{board.memo}}</p>
+                <p> 작성자 : {{board.id}}</p>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}
