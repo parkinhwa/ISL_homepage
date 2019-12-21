@@ -2,14 +2,13 @@
 <html lang="en">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Blog Template · Bootstrap</title>
+    <title>ISL PAGE</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/blog/">
 
@@ -19,6 +18,7 @@
 
 
     <style>
+        @font-face { font-family: 'CookieRunOTF-Bold'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/CookieRunOTF-Bold00.woff') format('woff'); font-weight: normal; font-style: normal; }
         .bd-placeholder-img {
             font-size: 1.125rem;
             text-anchor: middle;
@@ -32,6 +32,11 @@
             .bd-placeholder-img-lg {
                 font-size: 3.5rem;
             }
+        }
+        .main_title{
+            font-family: 'CookieRunOTF-Bold';
+            font-size: 250%;
+            color: black;
         }
     </style>
     <!-- Custom styles for this template -->
@@ -47,7 +52,7 @@
                 <div class="col-4 pt-1">
                 </div>
                 <div class="col-4 text-center">
-                    <a class="#" href="{%url 'home'%}">I.S.L</a>
+                    <a class="main_title" href="{%url 'home'%}">I.S.L</a>
                 </div>
                 {% if user.is_active%}
                 <div class="col-4 d-flex justify-content-end align-items-center">
@@ -61,7 +66,7 @@
                 {% else %}
                 <div class="col-4 d-flex justify-content-end align-items-center">
                     <a class="btn btn-sm btn-outline-secondary" href="{%url 'sign_in'%}" style="margin: 10px;">로그인</a>
-                    <a class="btn btn-sm btn-outline-secondary" href="{%url 'sign_up'%}" style="margin: 10px;">회원가입</a>
+                    <a class="btn btn-sm btn-outline-secondary" href="{%url 'sign_up'%}" onclick="window.open(this.href,'_blanck','width=500,height=500');return false;" style="margin: 10px;">회원가입</a>
                 </div>
                 {% endif %}
             </div>
@@ -78,7 +83,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">교수 소개</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item"> 
                     <a class="nav-link" href="#">자료실</a>
                 </li>
                 <li class="nav-item">
@@ -88,11 +93,11 @@
             </nav>
         </div>
 
-        <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
+        <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark"  style="text-align:center;">
             <div class="col-md-6 px-0">
-                <h1 class="display-4 font-italic">ISL 홈페이지</h1>
-                <p class="lead my-3">추후 업로드 예정</p>
-                <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Continue reading...</a></p>
+                <h1 class="display-4 font-italic">Intelligent System Lab</h1>
+                <!-- <p class="lead my-3">추후 업로드 예정</p>
+                <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Continue reading...</a></p> -->
             </div>
         </div>
 

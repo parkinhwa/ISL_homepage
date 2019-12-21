@@ -5,5 +5,3 @@
 #     class Meta:
 #         model = DjangoBoard
 #         fileds = ['subject','memo']
-
-
