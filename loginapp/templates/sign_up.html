@@ -1,4 +1,4 @@
-{% load staticfiles %}
+{% load static%}
 <!doctype html>
 <html lang="en">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -40,16 +40,24 @@
         {% csrf_token %}
         <img class="mb-4" src="/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
         <h1 class="h3 mb-3 font-weight-normal">회원가입</h1>
-        <label for="inputEmail" class="sr-only">ID</label>
-        <input type="text" name="username" id="inputEmail" class="form-control" value="" placeholder="ID" required
+        <label for="inputID" class="sr-only">ID</label>
+        <input type="text" name="username" id="inputID" class="form-control" value="" placeholder="ID" required
             autofocus>
         <br>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" name="password1" id="inputPassword" class="form-control" value="" placeholder="Password"
+        <label for="inputPassword" class="sr-only">비밀번호</label>
+        <input type="password" name="password1" id="inputPassword" class="form-control" value="" placeholder="비밀번호"
             required>
         <br>
-        <label for="inputPassword" class="sr-only">Confirm Password</label>
-        <input type="password" name="password2" id="inputPassword" class="form-control" value="" placeholder="Confirm Password"
+        <label for="inputPassword" class="sr-only">비밀번호 확인</label>
+        <input type="password" name="password2" id="inputPassword" class="form-control" value="" placeholder="비밀번호 확인"
+            required>
+        <br>
+        <label for="inputEmail" class="sr-only">Email</label>
+        <input type="text" name="userEamil" id="inputEmail" class="form-control" value="" placeholder="Email"
+            required>
+        <br>
+        <label for="inputNumber" class="sr-only">학번</label>
+        <input type="text" name="inputNumber" id="inputNumber" class="form-control" value="" placeholder="학번"
             required>
         <button class="btn btn-lg btn-primary btn-block" type="submit" value="Sign Up!" onclick="pop_close()">회원가입</button>
     </form>
