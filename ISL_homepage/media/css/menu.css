@@ -1,0 +1,77 @@
+html,
+.navbar-brand{
+    font-family: 'GmarketSansBold';
+    font-size: 24px;
+    color: darkslategrey;
+}
+.navbar-brand:hover{
+  color:teal;
+}
+.nav-link{
+  font-family: 'GmarketSansBold';
+  font-size: 20px;
+  color:darkslategrey;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+.nav-link:hover{
+  color:teal;
+}
+
+h1{font-size: 60px;
+    color: white;}
+h4{float:left;}
+nav{background-color:white;}
+
+header{
+    background-image: url('/media/img/feathers-5163670_1920.jpg');
+    font-family: 'GmarketSansBold';
+    height: 401px;}
+h6{
+  color:white;
+}
+.inner-menu {
+    display:none;
+    position: absolute;
+    background: white;
+    list-style: none;
+    margin:0; padding:0px;}
+
+.inner-menu > li {
+    padding: 16px 35px;
+    font-family: 'GmarketSansBold';
+    border-bottom: 1px solid darkslategrey;
+    
+  }
+
+.inner-menu > li > a {
+    font-size: 16px;
+    color: darkslategrey;
+    text-decoration:none;
+  }
+.inner-menu > li > a:hover{
+  color:teal;
+}
+ #navbarDropdown{
+   color: darkslategrey;
+ }
+
+ #outer-menu > li:hover > .inner-menu {display:block; }
+ #outer-menu > .inner-menu > li:hover {background:black; }
+ 
+ #login{
+  font-family: 'GmarketSansBold';
+  color:darkslategray;
+  font-size:14px;
+  text-decoration:none;
+  position: relative;
+  bottom:5px;
+
+  margin-right: -1px;
+  float:right;
+ }
+ 
+ #image {
+  margin-right: 5px;
+  border-radius: 0%;
+ }
