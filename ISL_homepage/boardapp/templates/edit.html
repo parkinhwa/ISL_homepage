@@ -1,0 +1,29 @@
+{%extends 'base.html'%}
+{% block contents %}
+<head>
+    <style>
+        body{
+            font-size: 16px;
+        }
+        #write{
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form method="POST">
+            {% csrf_token %}
+            <h4>제목:</h4>
+            <input type="text" name="edit_title" value="{{board.subject}}">
+            <br>
+            <br>
+            <h4>본문: </h4>
+            <textarea cols=40 rows=10 name="edit_body">{{board.memo}}</textarea>
+            <br>
+            <br>
+            <input class="btn btn-dark" id="write" type="submit" value="수정하기">
+        </form>
+    </div>
+</body>
+{% endblock %}
