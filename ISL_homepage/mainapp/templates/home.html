@@ -8,15 +8,16 @@
     h3{
         list-style-type: none;
         padding: 20px 0;
-        border-top: 1px solid darkslategrey;
         border-bottom: 1px solid darkslategrey;
         font-family: 'YESGothic-Bold';
         font-size: 20px;
+        color:darkslategray;
         
     }
     P{
         font-family: 'YESGothic-Regular';
         font-size: 16px;
+        color:darkslategray;
     }
     img {
             float: left;
@@ -25,32 +26,47 @@
             margin: 5px;
             margin-right: 50px;
     }
-    
+    #card{
+        margin-top: 30px;
+    }
     </style>
 </head>
 <body>
     <div class="container">
-        
-                <h3>&nbsp&nbsp&nbsp&nbsp&nbsp랩실 소개</h3>
+        <div class="row" id="card">
+            <div class="col-md-6">
+                <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="col p-3 d-felx flex-column position-static">
+                        <h3>랩실 소개</h3>
             
-                <P>Android, Java를 주로 다루고있으며 웹, 앱, 서버 개발등을 하고있습니다....<br>
-                음<br>
-                아<br><br><br><br></P>
-    </div>
-    <div class="container">
-                <h3>&nbsp&nbsp&nbsp&nbsp&nbsp담당 교수 소개</h3>
+                        <P class="card-text mb-auto">Android, Java를 주로 다루고있으며 웹, 앱, 서버 개발등을 하고있습니다....<br>
+                        음<br>
+                        아<br><br><br><br><br><br></P>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="col p-3 d-felx flex-column position-static">
+                        <h3>담당 교수 소개</h3>
             
-                <img src= "/media/img/professor.jpg">
-                        <P> 
+                        <img src= "/media/img/professor.jpg">
+                        <P> 김차종 교수님<br><br>
                             전공분야 : 컴퓨터그래픽, 정보공학<br>
                             관련교과목 : 컴퓨터그래픽스, Linux/Linux System, JAVA<br>
                             연구실 : N4동 609호<br>
-                            전화번호 : 042-821-1206 <br>
-                            이메일 : cjkim@hanbat.ac.kr<br><br>
-                            김차종 교수님<br></P>
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp전화번호 : 042-821-1206
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp이메일 : cjkim@hanbat.ac.kr</P>
                    
-                     
-
+                    </div>
+                </div> 
+            </div>    
+        </div>                    
+    </div>
+    <div class="container">
+    <table class="table">
+        <th>테이블</th>
+    </table>
     </div>
 </body>
 {% endblock %}
