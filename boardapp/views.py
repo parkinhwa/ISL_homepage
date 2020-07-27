@@ -1,7 +1,8 @@
 import math
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import DjangoBoard
-# from .forms import NewDjangoBoard
+# from .models import DjangoBoard, Comment
+# from .forms import CommentForm
 from django.utils import timezone
 from django.core.paginator import Paginator
 # Create your views here.
@@ -33,35 +34,24 @@ def board(request):
     return render(request, 'board.html', {'boards':boards, 'post':post,'page_range':page_range,'board_list':board_list})
 
 
-# def create(request):
-#     # 새로운 데이터 블로그 글 저장하는 역할 == POST
-#     if request.method == 'POST':
-#         # 입력된 블로그 글들을 저장
-#         djangoBoard = DjangoBoard(request.POST)
-#         if djangoBoard.is_valid:
-#             djangoboard = DjangoBoard()
-#             djangoboard.subject = request.GET['title']
-#             djangoboard.memo = request.GET['body']
-#             djangoboard.name = request.user
-#             djangoboard.created_date = timezone.datetime.now()
-#             djangoboard.save()
-#             return redirect('/detail/')
-#         #글쓰기 페이지를 띄워주는 역할 == GET
-#         else:
-#             # 단순히 입력받을 수 있는 form을 띄워줘라
-#             form = NewDjangoBoard()
-#             return render(request, 'write.html',{'form':form})
-#     #    입력된 블로그 글들을 저장해라
-#     #    글쓰기 페이지를 띄워주는 역할 == GET(!=POST)
-
 def create(request):
-    djangoboard = DjangoBoard()
-    djangoboard.subject = request.GET['title']
-    djangoboard.memo = request.GET['body']
-    djangoboard.name = request.user
-    djangoboard.created_date = timezone.datetime.now()
-    djangoboard.save()
-    return redirect('/board/')
+    # 새로운 데이터 블로그 글 저장하는 역할 == POST
+    if request.method == 'POST':
+        # 입력된 블로그 글들을 저장
+        djangoBoard = DjangoBoard(request.POST)
+        djangoboard = DjangoBoard()
+        djangoboard.subject = request.POST['title']
+        djangoboard.memo = request.POST['body']
+        djangoboard.photo = request.FILES['photo']
+        djangoboard.name = request.user
+        djangoboard.created_date = timezone.datetime.now()
+        djangoboard.save()
+        return redirect('/board/')
+    else:
+            # 단순히 입력받을 수 있는 form을 띄워줘라
+            return render(request, 'board.html')
+    #    글쓰기 페이지를 띄워주는 역할 == GET(!=POST)
+
 
 def update(request, board_id):
     board_detail = get_object_or_404(DjangoBoard,pk=board_id)
@@ -76,9 +66,6 @@ def update(request, board_id):
         return render(request, 'edit.html',{'board':board_detail} )
     #해당하는 게시판의 글 객체 pk에 맞는 입력공간
     
-    
-
-
 def delete(request, board_id):
     board_detail = get_object_or_404(DjangoBoard,pk=board_id)
     board_detail.delete()
@@ -86,6 +73,7 @@ def delete(request, board_id):
 
 def detail(request, board_id):
     board_detail = get_object_or_404(DjangoBoard,pk=board_id)
+ 
     return render(request, 'detail.html',{'board':board_detail})
 
 def write(request):

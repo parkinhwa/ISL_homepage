@@ -1,19 +1,52 @@
 {%extends 'base.html'%}
 {% block contents %}
+<script>
 
+    function cancle_confirm(url) {
+        var cancle = confirm('글 작성을 취소할까요?');
+        if(cancle == true){
+            location =url;
+        }
+    }
+</script>
+<style>
+    .table_th {
+        width: 100px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
 <body>
     <div class="container">
         <form method="POST">
             {% csrf_token %}
-            <h4>제목:</h4>
-            <input type="text" name="edit_title" value="{{board.subject}}">
-            <br>
-            <br>
-            <h4>본문: </h4>
-            <textarea cols=40 rows=10 name="edit_body">{{board.memo}}</textarea>
-            <br>
-            <br>
-            <input class="btn btn-dark" type="submit" value="수정하기">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <th scope="row" class="table_th">제목</th>
+                        <td>
+                            <div><input style="width:100%;" type="text"name="edit_title" value="{{board.subject}}"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="table_th">내용</th>
+                        <td><textarea class="form_control" style="width:100%;" rows="10" name="edit_body">{{board.memo}}></textarea></td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="table_th">첨부파일</th>
+                        <td colspan="2">
+                            <div class="form-group">
+                                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="float: right;">
+
+                <input class="btn btn-outline-dark" type="submit" value="수정하기">
+                <a href="javascript:cancle_confirm({%url 'board'%})"><span class="btn btn-outline-dark">취소하기</span></a>
+            </div>
         </form>
     </div>
 </body>

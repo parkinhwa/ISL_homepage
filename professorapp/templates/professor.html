@@ -1,0 +1,37 @@
+{%extends 'base.html'%}
+{% block contents %}
+{%load staticfiles %}
+<style>
+    .prof {
+        background-color: #F2F2F2;
+        border-style: solid;
+    }
+
+    #prof_img {
+        width: 150px;
+        margin: 30px 30px 30px 30px;
+    }
+
+    #prof_contents {
+        position: absolute;
+        top: 460px;
+        left: 300px;
+    }
+</style>
+
+
+<div class="container">
+    <div class="prof">
+        <img id="prof_img" src="{% static 'professor_image.jpg'%}">
+        <div id="prof_contents">
+            <strong>김 차 종  (전임교수)</strong>
+            <hr>
+            <ul style="list-style: none;">
+                <li>연구실 N4동 609호</li>
+                <li>전공분야 컴퓨터그래픽, 정보공학</span></li>
+            </ul s>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

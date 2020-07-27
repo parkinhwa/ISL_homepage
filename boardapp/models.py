@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.utils import timezone
 from hitcount.models import HitCount, HitCountMixin
 # Create your models here.
 
@@ -10,7 +11,9 @@ class DjangoBoard(models.Model,HitCountMixin):
       created_date = models.DateField(null=True, blank=True)
       memo = models.CharField(max_length=200, blank=True)
       hits = models.IntegerField(default=0)
+      photo = models.ImageField(upload_to='images/', null=True)
 
+      
       def __str__(self):
           return self.subject
       

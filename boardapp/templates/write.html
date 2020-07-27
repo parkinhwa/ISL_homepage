@@ -1,13 +1,38 @@
 {%extends 'base.html'%}
 {% block contents %}
 <script>
-
     function cancle_confirm(url) {
         var cancle = confirm('글 작성을 취소할까요?');
-        if(cancle == true){
-            location =url;
+        if (cancle == true) {
+            location = url;
         }
     }
+    (function () {
+            var dropzone = document.getElementById('dropzone');
+            dropzone.ondrop = function (e) {
+                fileinput.files = e.dataTransfer.files
+                e.preventDefault();
+
+
+                dropzone.ondrop = function (e) {
+                    e.preventDefault();
+                    this.className = 'dropzone';
+
+                    x = e.dataTransfer.files
+                    console.log(x)
+                };
+
+                dropzone.ondragover = function () {
+                    this.className = 'dropzone dragover';
+                    return false;
+                };
+
+                dropzone.ondragleave = function () {
+                    this.className = 'dropzone';
+
+                    return false;
+                };
+            }());
 </script>
 <style>
     .table_th {
@@ -15,19 +40,28 @@
         margin-left: auto;
         margin-right: auto;
     }
+
+    .dropzone {
+        width: 300px;
+        height: 300px;
+        border: 2px dashed #ccc;
+        color: #ccc;
+        line-height: 300px;
+        text-align: center;
+
+    }
+
+    .dropzone.dragover {
+        border-color: #000;
+        color: #000;
+    }
 </style>
 
 <body>
+
     <div class="container">
-        <!-- <form method="POST">
-            {% csrf_token%}
-            <table>
-                {{form.as_table}}
-            </table>
-            <br>
-            <input type="submit" value="제출하기"> -->
-        <!-- <form action="{%url 'create'%}"> -->
-        <form action="{%url 'create'%}">
+        <form action="{%url 'create'%}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
             <table class="table table-bordered">
                 <tbody>
                     <tr>
@@ -44,16 +78,18 @@
                         <th scope="row" class="table_th">첨부파일</th>
                         <td colspan="2">
                             <div class="form-group">
-                                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                <input type="file" name="photo" class="form-control-file" id="exampleFormControlFile1">
                             </div>
                         </td>
                     </tr>
+                    <div id="upload"></div>
+                    <div class="dropzone" id="dropzone">Drop files here</div>
                 </tbody>
             </table>
             <div style="float: right;">
 
-                <a  href="javascript:cancle_confirm({%url 'board'%})"><span class="btn btn-outline-dark">취소하기</span></a>
                 <input class="btn btn-outline-dark" type="submit" value="제출하기">
+                <a href="javascript:cancle_confirm({%url 'board'%})"><span class="btn btn-outline-dark">취소하기</span></a>
             </div>
         </form>
     </div>

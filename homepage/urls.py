@@ -18,10 +18,14 @@ from django.urls import path, include
 import mainapp.views
 import boardapp.views
 import loginapp.views
+import professorapp.views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',mainapp.views.home, name="home"),
+    path('index',mainapp.views.index, name="index"),
     path('board/',boardapp.views.board, name="board"),
     path('write', boardapp.views.write, name="write"),
     path('create', boardapp.views.create, name="create"),
@@ -31,5 +35,7 @@ urlpatterns = [
     path('sign_up',loginapp.views.sign_up,name="sign_up"),
     path('sign_in',loginapp.views.sign_in,name="sign_in"),
     path('logout',loginapp.views.logout, name="logout"),
+    path('introduce',professorapp.views.introduce, name="introduce"),
     path('accounts/',include('allauth.urls')),
-]
+] 
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

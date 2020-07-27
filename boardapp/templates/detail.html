@@ -5,9 +5,8 @@
         var delete_c = confirm('정말 삭제하시겠습니까?');
         if (!delete_c) {
             event.defaultPrevented();
-        }
-        else{
-            location.href="{%url 'delete' board.id%}"
+        } else {
+            location.href = "{%url 'delete' board.id%}"
         }
     }
 </script>
@@ -32,10 +31,22 @@
                 <hr>
                 <div>
                     {{board.memo}}
+                    {% if board.photo %}
+                    <img src="{{board.photo.url}}">
+                    {% endif %}
                 </div>
+                
+                <hr>
+                <div>
+                    {% if board.photo %}
+                    <a href="{{board.photo.url}}" download>첨부파일 다운로드</a>
+                    {% else%}
+                    <p>첨부파일 없음</p>
+                    {% endif %}
+                </div>
+                <hr>
                 {%if user.username == board.name%}
-                <a href="{%url 'update' board.id%}" onclick="delete_confirm()">수정</a>
-                <!-- <a href="{%url 'delete' board.id%}">삭제</a> -->
+                <a href="{%url 'update' board.id%}">수정</a>
                 <a href="javascript:delete_confirm()">삭제</a>
                 {%else%}
                 <div class="none_display">
@@ -45,6 +56,29 @@
                 {%endif%}
             </div>
         </div>
+        <!-- <div id="comment">
+            {% for comment in post.comments.all %}
+            <div class="comment-list">
+                <a href="#">{{ comment.author }}</a>
+                <small>{{ comment.created_date }}</small>
+                <p>{{ comment.text|linebreaks }}</p>
+            </div>
+            {% empty %}
+            <div class="comment-list">
+                <p>작성된 댓글이 없습니다!</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        {% if request.user.is_active %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">댓글 작성</button>
+        </form>
+        {% else %}
+        <div class="alert alert-warning">로그인된 사용자만 댓글을 작성할 수 있습니다.</div>
+        {% endif %} -->
     </div>
 </body>
 {% endblock %}

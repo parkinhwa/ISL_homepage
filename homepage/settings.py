@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'mainapp.apps.MainappConfig',
     'boardapp.apps.BoardappConfig',
     'loginapp.apps.LoginappConfig',
+    'professorapp.apps.ProfessorappConfig',
     'hitcount',
 
 
@@ -133,9 +134,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIR = [os.path.join(BASE_DIR, 'loginapp','static')]
+STATICFILES_DIR = [os.path.join(BASE_DIR, 'mainapp','static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/mdedia/'
+
+# STATIC_URL = '/media/'
+# STATICFILES_DIR = [os.path.join(BASE_DIR, 'static')]
 # AUTHENTICATION_BACKENDS = (
 #    'django.contrib.auth.backends.ModelBackend',
 #    'allauth.account.auth_backends.AuthenticationBackend',

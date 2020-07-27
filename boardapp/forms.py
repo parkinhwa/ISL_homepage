@@ -1,7 +1,7 @@
 # from django import forms
-# from .models import DjangoBoard
+# from .models import Comment, DjangoBoard
 
-# class NewDjangoBoard(forms.ModelForm):
+# class CommentForm(forms.ModelForm):
 #     class Meta:
-#         model = DjangoBoard
-#         fileds = ['subject','memo']
+#         model = Comment
+#         fields = ['author','text']
