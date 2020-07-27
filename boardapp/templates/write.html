@@ -1,0 +1,71 @@
+{%extends 'base.html'%}
+{% block contents %}
+<head>
+    <style>
+        body{
+            font-size: 16px;
+        }
+        #write{
+            font-size: 16px;
+        }
+    </style>
+</head>
+<script>
+
+    function cancle_confirm(url) {
+        var cancle = confirm('글 작성을 취소할까요?');
+        if(cancle == true){
+            location =url;
+        }
+    }
+</script>
+<style>
+    .table_th {
+        width: 100px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <!-- <form method="POST">
+            {% csrf_token%}
+            <table>
+                {{form.as_table}}
+            </table>
+            <br>
+            <input type="submit" value="제출하기"> -->
+        <!-- <form action="{%url 'create'%}"> -->
+        <form action="{%url 'create'%}">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <th scope="row" class="table_th">제목</th>
+                        <td>
+                            <div><input style="width:100%;" type="text" name="title"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="table_th">내용</th>
+                        <td><textarea class="form_control" style="width:100%;" rows="10" name="body"></textarea></td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="table_th">첨부파일</th>
+                        <td colspan="2">
+                            <div class="form-group">
+                                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="float: right;">
+
+                <a  href="javascript:cancle_confirm({%url 'board'%})" ><span class="btn btn-outline-dark" id="write">취소하기</span></a>
+                <input class="btn btn-outline-dark" id="write" type="submit" value="제출하기">
+            </div>
+        </form>
+    </div>
+</body>
+{% endblock %}
