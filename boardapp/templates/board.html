@@ -1,6 +1,15 @@
 {% extends 'base.html' %}
 {% block contents %}
-
+<head>
+    <style>
+        body{
+            font-size: 16px;
+        }
+        #write{
+            font-size: 16px;
+        }
+    </style>
+</head>
 <body>
     <div class="container">
         <table class="table table-striped">
@@ -27,7 +36,7 @@
         </table>
         <hr>
         <div class="container">
-            <a href="{% url 'write' %}" class="btn btn-outline-dark" role="button" aria-pressed="true">글쓰기</a>
+            <a href="{% url 'write' %}" class="btn btn-outline-dark" id="write" role="button" aria-pressed="true">글쓰기</a>
             <br><br>
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">

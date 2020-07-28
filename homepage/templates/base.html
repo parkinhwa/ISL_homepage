@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -18,7 +19,9 @@
 
 
     <style>
-        @font-face { font-family: 'CookieRunOTF-Bold'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/CookieRunOTF-Bold00.woff') format('woff'); font-weight: normal; font-style: normal; }
+        @font-face{font-family: 'GmarketSansBold'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff'); font-weight: normal; font-style: normal;}
+        @font-face { font-family: 'GoyangDeogyang'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/GoyangDeogyang.woff') format('woff'); font-weight: normal; font-style: normal; }
+        @font-face { font-family: 'GoyangIlsan'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/GoyangIlsan.woff') format('woff'); font-weight: normal; font-style: normal; }
         .bd-placeholder-img {
             font-size: 1.125rem;
             text-anchor: middle;
@@ -33,76 +36,68 @@
                 font-size: 3.5rem;
             }
         }
-        .main_title{
-            font-family: 'CookieRunOTF-Bold';
-            font-size: 250%;
-            color: black;
-        }
+
     </style>
     <!-- Custom styles for this template -->
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="blog.css" rel="stylesheet">
+    <link  rel="stylesheet" href="{% static 'css/menu.css' %}">
 </head>
 
 <body>
-    <div class="container">
-        <header class="blog-header py-3">
-            <div class="row flex-nowrap justify-content-between align-items-center">
-                <div class="col-4 pt-1">
-                </div>
-                <div class="col-4 text-center">
-                    <a class="main_title" href="{%url 'home'%}">I.S.L</a>
-                </div>
-                {% if user.is_active%}
-                <div class="col-4 d-flex justify-content-end align-items-center">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">{{ user.username }} 로그인 중</a>
-                    <a class="btn btn-sm btn-outline-secondary" href="javascript:{document.getElementById('logout').submit()}" style="margin: 10px;">LOGOUT</a>
-                        <form id="logout" method="POST" action="{%url 'logout'%}">
-                            {%csrf_token%}<input type="hidden"/>
-                    </form>
-                </div>
-                {% else %}
-                <div class="col-4 d-flex justify-content-end align-items-center">
-                    <a class="btn btn-sm btn-outline-secondary" href="{%url 'sign_in'%}" style="margin: 10px;">로그인</a>
-                    <a class="btn btn-sm btn-outline-secondary" href="{%url 'sign_up'%}" onclick="window.open(this.href,'_blanck','width=500,height=500');return false;" style="margin: 10px;">회원가입</a>
-                </div>
-                {% endif %}
-            </div>
-        </header>
-
-        <div class="nav-scroller py-1 mb-2">
-            <ul class="nav justify-content-center">
-                <li class="nav-item">
-                    <a class="nav-link active" href="{%url 'home' %}">홈</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{%url 'board' %}">게시판</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">교수 소개</a>
-                </li>
-                <li class="nav-item"> 
-                    <a class="nav-link" href="#">자료실</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">추후 추가할것</a>
-                </li>
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+        <div class="container">
+          <img src="{% static 'images/logo.jpg'%}" id="image">
+          <a class="navbar-brand" href="{%url 'home' %}">I.S.L</a>
+          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            Menu
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto" id="outer-menu">
+              <li class="nav-item">
+                <a class="nav-link" href="{%url 'home' %}">랩실소개</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{%url 'board' %}">게시판</a>
+              </li>
+              <li class="outer-menu-item">
+                <span class="nav-link">자료실</span>
+                <ul class="inner-menu">
+                  <li class="inner-menu-item"><a href="#">1학년</a></li>
+                  <li class="inner-menu-item"><a href="#">2학년</a></li>
+                  <li class="inner-menu-item"><a href="#">3학년</a></li>
+                  <li class="inner-menu-item"><a href="#">4학년</a></li>
+              </ul>
+              </li>
+          {% if user.is_active%}
+              <li><a class="btn-sm btn-outline-white" id="login" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">{{ user.username }} 로그인 중</a></li>
+              <li><a class="btn-sm btn-outline-light" id="login" href="javascript:{document.getElementById('logout').submit()}">LOGOUT</a></li>
+                  <form id="logout" method="POST" action="{%url 'logout'%}">
+                      {%csrf_token%}<input type="hidden"/>
+              </form>
+          {% else %}
+              <li><a class="btn-outline-light btn-sm" id="login" href="{%url 'sign_in'%}" >로그인</a></li>
+              <li><a class="btn-sm btn-outline-light" id="login" href="{%url 'sign_up'%}" onclick="window.open(this.href,'_blanck','width=500,height=500');return false;">회원가입</a></li>
+          {% endif %}
             </ul>
-            </nav>
         </div>
+        </div>
+    </nav>
 
-        <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark"  style="text-align:center;">
-            <div class="col-md-6 px-0">
-                <h1 class="display-4 font-italic">Intelligent System Lab</h1>
-                <!-- <p class="lead my-3">추후 업로드 예정</p>
-                <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Continue reading...</a></p> -->
+    <header>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+              <div style="margin-top: 180px;">
+                <h1>Intelligent System Lab</h1>
+              </div>
             </div>
+          </div>
         </div>
+      </header>   
 
 
-    </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
     </script>
@@ -113,7 +108,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
     {% block contents %}
-
+    
     {% endblock %}
 </body>
 
