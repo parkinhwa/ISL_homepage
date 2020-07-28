@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'professorapp.apps.ProfessorappConfig',
     'hitcount',
 
-
     # allauth
     'allauth',
     'allauth.account',
@@ -134,11 +133,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIR = [os.path.join(BASE_DIR, 'mainapp','static')]
+STATICFILES_DIR = [
+    os.path.join(BASE_DIR, 'static'),
+]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/mdedia/'
+MEDIA_URL = '/media/'
 
 # STATIC_URL = '/media/'
 # STATICFILES_DIR = [os.path.join(BASE_DIR, 'static')]
