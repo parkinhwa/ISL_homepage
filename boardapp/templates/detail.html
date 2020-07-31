@@ -1,7 +1,7 @@
 {%extends 'base.html'%}
 {% block contents %}
 <script>
-    function delete_confirm() {
+    function update_delete_confirm() {
         var delete_c = confirm('정말 삭제하시겠습니까?');
         if (!delete_c) {
             event.defaultPrevented();
@@ -29,6 +29,7 @@
 </style>
 
 <body>
+    <br>
     <div class="container">
         <div class="card">
             <div class="card-body">
@@ -37,12 +38,13 @@
                 <div>{{board.created_date}}</div>
                 <hr>
                 <div>
-                    {{board.memo}}
+                    {{board.content}}
                 </div>
-                {%if user.username == board.name%}
-                <a href="{%url 'update' board.id%}" onclick="delete_confirm()">수정</a>
+                <hr>
+                {%if user.username == board.author.username%}
+                <a id="update" href="{%url 'update' board.id%}" onclick="update_delete_confirm()">수정</a>
                 <!-- <a href="{%url 'delete' board.id%}">삭제</a> -->
-                <a href="javascript:delete_confirm()">삭제</a>
+                <a id="delete" href="javascript:update_delete_confirm()">삭제</a>
                 {%else%}
                 <div class="none_display">
                     <a href="#" onclick="Unauthorized()">수정</a>

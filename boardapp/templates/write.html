@@ -1,11 +1,13 @@
 {%extends 'base.html'%}
 {% block contents %}
+
 <head>
     <style>
-        body{
+        body {
             font-size: 16px;
         }
-        #write{
+
+        #write {
             font-size: 16px;
         }
     </style>
@@ -14,55 +16,58 @@
 
     function cancle_confirm(url) {
         var cancle = confirm('글 작성을 취소할까요?');
-        if(cancle == true){
-            location =url;
+        if (cancle == true) {
+            location = url;
         }
     }
 </script>
 <style>
     .table_th {
-        width: 100px;
+        width: 10%;
         margin-left: auto;
         margin-right: auto;
+    }
+
+    .board_form {
+        width: 100%;
     }
 </style>
 
 <body>
+    <br>
     <div class="container">
-        <!-- <form method="POST">
-            {% csrf_token%}
-            <table>
-                {{form.as_table}}
-            </table>
-            <br>
-            <input type="submit" value="제출하기"> -->
-        <!-- <form action="{%url 'create'%}"> -->
-        <form action="{%url 'create'%}">
+        <form action="{%url 'create'%}" method="POST" enctype="multipart/form-data">
+            {%csrf_token%}
+
             <table class="table table-bordered">
                 <tbody>
                     <tr>
                         <th scope="row" class="table_th">제목</th>
                         <td>
-                            <div><input style="width:100%;" type="text" name="title"></div>
+                            <div>{{form.subject}}</div>
+                            <!-- <input style="width:100%;" type="text" name="title" required> -->
                         </td>
                     </tr>
                     <tr>
                         <th scope="row" class="table_th">내용</th>
-                        <td><textarea class="form_control" style="width:100%;" rows="10" name="body"></textarea></td>
+                        <td>{{form.content}}</td>
+                        <!-- <textarea class="form_control" style="width:100%;" rows="10" name="body" required></textarea> -->
                     </tr>
                     <tr>
                         <th scope="row" class="table_th">첨부파일</th>
                         <td colspan="2">
-                            <div class="form-group">
-                                <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                            </div>
+                            <!-- <div class="form-group"> -->
+                            {{form.file}}
+                            <!-- <input type="file" name='file' class="form-control-file" id="exampleFormControlFile1"> -->
+                            <!-- </div> -->
                         </td>
                     </tr>
                 </tbody>
             </table>
             <div style="float: right;">
 
-                <a  href="javascript:cancle_confirm({%url 'board'%})" ><span class="btn btn-outline-dark" id="write">취소하기</span></a>
+                <a href="javascript:cancle_confirm({%url 'board'%})"><span class="btn btn-outline-dark"
+                        id="write">취소하기</span></a>
                 <input class="btn btn-outline-dark" id="write" type="submit" value="제출하기">
             </div>
         </form>
