@@ -7,11 +7,12 @@ import mainapp.views
 import boardapp.views
 import loginapp.views
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home),
     path('',mainapp.views.home, name="home"),
-    path('board/',boardapp.views.board, name="board"),
+    path('board/', boardapp.views.board, name="board"),
+    path('dataroom/', boardapp.views.dataroom, name="dataroom"),
     path('write', boardapp.views.write, name="write"),
     path('create', boardapp.views.create, name="create"),
     path('board/<int:board_id>/',boardapp.views.detail,name="detail"),

@@ -5,7 +5,9 @@ from .models import DjangoBoard
 from django.utils import timezone
 from django.core.paginator import Paginator
 # Create your views here.
-
+def dataroom(request):
+    return render(request,'dataroom.html')
+    
 def board(request):
     boards = DjangoBoard.objects
     

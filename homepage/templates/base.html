@@ -66,12 +66,7 @@
     <div class="container">
       <img src="{% static 'mainapp/img/logo.jpg'%}" id="image">
       <a class="navbar-brand" href="{%url 'home' %}">I.S.L</a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-        data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-        aria-label="Toggle navigation">
-        Menu
-        <i class="fas fa-bars"></i>
-      </button>
+      
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto" id="outer-menu">
           <li class="nav-item">
@@ -80,14 +75,8 @@
           <li class="nav-item">
             <a class="nav-link" href="{%url 'board' %}">게시판</a>
           </li>
-          <li class="outer-menu-item">
-            <span class="nav-link">자료실</span>
-            <ul class="inner-menu">
-              <li class="inner-menu-item"><a href="#">1학년</a></li>
-              <li class="inner-menu-item"><a href="#">2학년</a></li>
-              <li class="inner-menu-item"><a href="#">3학년</a></li>
-              <li class="inner-menu-item"><a href="#">4학년</a></li>
-            </ul>
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'dataroom' %}">자료실</a>
           </li>
           {% if user.is_active%}
           <li><a class="btn-sm btn-outline-white" id="login" data-toggle="dropdown" aria-haspopup="true"
@@ -107,17 +96,6 @@
     </div>
   </nav>
 
-  <header>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <div style="margin-top: 180px;">
-            <h1>Intelligent System Lab</h1>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
 
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -133,5 +111,4 @@
 
   {% endblock %}
 </body>
-
 </html>

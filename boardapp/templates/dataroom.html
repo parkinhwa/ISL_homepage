@@ -8,11 +8,25 @@
         #write{
             font-size: 16px;
         }
+        .searchbox{
+           margin: 70px 290px;
+        }
+        hr{ 
+           margin-top: 30px;
+           color:black;
+        }
     </style>
 </head>
 <body>
+    <div class="searchbox">
+        <hr>
+        <div class="header">
+        <input onkeyup="filter()" type="text" id="value" placeholder="Type to Search">
+        </div>
+    </div>
+
     <div class="container">
-        <table class="table table-striped" style="margin-top: 50px;">
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th>번호</th>
