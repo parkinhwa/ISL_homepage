@@ -1,5 +1,15 @@
 {%extends 'base.html'%}
 {% block contents %}
+<head>
+    <style>
+        body{
+            font-size: 16px;
+        }
+        #write{
+            font-size: 16px;
+        }
+    </style>
+</head>
 <script>
 
     function cancle_confirm(url) {
@@ -52,8 +62,8 @@
             </table>
             <div style="float: right;">
 
-                <a  href="javascript:cancle_confirm({%url 'board'%})"><span class="btn btn-outline-dark">취소하기</span></a>
-                <input class="btn btn-outline-dark" type="submit" value="제출하기">
+                <a  href="javascript:cancle_confirm({%url 'board'%})" ><span class="btn btn-outline-dark" id="write">취소하기</span></a>
+                <input class="btn btn-outline-dark" id="write" type="submit" value="제출하기">
             </div>
         </form>
     </div>

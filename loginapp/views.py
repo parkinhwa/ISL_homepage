@@ -4,20 +4,28 @@ from django.contrib import messages
 #유저에 대한 클래스를 가져옴
 from django.contrib import auth
 #계정에 대한 권한
+from .models import Profile
+from .forms import SignupForm, ProfileForm
+from django.db import transaction
 
 # Create your views here.
+
+@transaction.atomic
 def sign_up(request):
     if request.method == 'POST':
-        #request 방식이 POST이면
-        if request.POST['password1'] == request.POST['password2']:
-            #passwor1 과 password2값이 같으면
-            user = User.objects.create_user(username=request.POST['username'], password=request.POST['password1'])
-            #사용자가 입력한 usernaeme과 password로 계정을 생성하여 user라는 변수에 담는다.
-            auth.login(request, user)
-            #로그인!
+        signup_form = SignupForm(request.POST)
+        profile_form = ProfileForm(request.POST)
+        if signup_form.is_valid() and profile_form.is_valid():
+            signup_form.signup()
+            profile_form.profile_save(User.objects.get(username=signup_form.cleaned_data['username']))
             return redirect('home')
-            #redirect안에는 url을 담는다.
-    return render(request,'sign_up.html')
+        else:
+            print('error' + str(signup_form.is_valid()) + str(profile_form.is_valid()))
+    else:
+        signup_form=SignupForm()
+        profile_form = ProfileForm()
+    
+    return render(request,'sign_up.html', {'signup_form':signup_form, 'profile_form':profile_form})
     # 실패하는경우 sign_up.html에 머문다.
 
 def sign_in(request):

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'mainapp.apps.MainappConfig',
     'boardapp.apps.BoardappConfig',
     'loginapp.apps.LoginappConfig',
+   
     'hitcount',
 
 
@@ -98,6 +99,7 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -134,13 +136,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
-STATICFILES_DIR = [
-    os.path.join(BASE_DIR, 'loginapp','static'),
-    '/media/']
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'static'),
+# ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-
 # AUTHENTICATION_BACKENDS = (
 #    'django.contrib.auth.backends.ModelBackend',
 #    'allauth.account.auth_backends.AuthenticationBackend',
