@@ -9,7 +9,6 @@ import loginapp.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home),
     path('',mainapp.views.home, name="home"),
     path('board/',boardapp.views.board, name="board"),
     path('write', boardapp.views.write, name="write"),
@@ -20,6 +19,7 @@ urlpatterns = [
     path('sign_up',loginapp.views.sign_up,name="sign_up"),
     path('sign_in',loginapp.views.sign_in,name="sign_in"),
     path('logout',loginapp.views.logout, name="logout"),
+    path('dataroom/', boardapp.views.dataroom, name="dataroom"),
     path('accounts/',include('allauth.urls')),
 ] 
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

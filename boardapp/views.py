@@ -105,3 +105,6 @@ def edit(request, board_id):
 
 def download(request, file_name):
     return response
+
+def dataroom(request):
+    return render(request, 'data_room.html')

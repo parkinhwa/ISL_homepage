@@ -49,8 +49,6 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     # provider
-    'allauth.socialaccount.providers.kakao',
-    'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -134,9 +132,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, 'static'),
-# ]
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'homepage','static'),
+    os.path.join(BASE_DIR, 'mainapp','static'),
+]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 SITE_ID = 1
