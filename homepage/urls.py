@@ -21,5 +21,5 @@ urlpatterns = [
     path('logout',loginapp.views.logout, name="logout"),
     path('dataroom/', boardapp.views.dataroom, name="dataroom"),
     path('accounts/',include('allauth.urls')),
-] 
+]
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

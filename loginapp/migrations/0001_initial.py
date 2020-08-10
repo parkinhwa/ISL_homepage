@@ -18,9 +18,9 @@ class Migration(migrations.Migration):
             name='Profile',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('email', models.EmailField(blank=True, max_length=254, verbose_name='이메일')),
-                ('name', models.CharField(blank=True, max_length=10, verbose_name='이름')),
-                ('student_ID', models.IntegerField(blank=True, null=True, verbose_name='학번')),
+                ('email', models.EmailField(max_length=254, unique=True, verbose_name='이메일')),
+                ('name', models.CharField(max_length=10, verbose_name='이름')),
+                ('student_ID', models.IntegerField(verbose_name='학번')),
                 ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
