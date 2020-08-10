@@ -1,7 +1,7 @@
 {%extends 'base.html'%}
 {% block contents %}
 <script>
-    function delete_confirm() {
+    function update_delete_confirm() {
         var delete_c = confirm('정말 삭제하시겠습니까?');
         if (!delete_c) {
             event.defaultPrevented();
@@ -19,9 +19,16 @@
     .none_display {
         display: none;
     }
+    body{
+            font-size: 16px;
+        }
+    #write{
+            font-size: 16px;
+        }
 </style>
 
 <body>
+    <br>
     <div class="container">
         <div class="card">
             <div class="card-body">
@@ -30,24 +37,13 @@
                 <div>{{board.created_date}}</div>
                 <hr>
                 <div>
-                    {{board.memo}}
-                    {% if board.photo %}
-                    <img src="{{board.photo.url}}">
-                    {% endif %}
-                </div>
-                
-                <hr>
-                <div>
-                    {% if board.photo %}
-                    <a href="{{board.photo.url}}" download>첨부파일 다운로드</a>
-                    {% else%}
-                    <p>첨부파일 없음</p>
-                    {% endif %}
+                    {{board.content}}
                 </div>
                 <hr>
-                {%if user.username == board.name%}
-                <a href="{%url 'update' board.id%}">수정</a>
-                <a href="javascript:delete_confirm()">삭제</a>
+                {%if user.username == board.author.username%}
+                <a id="update" href="{%url 'update' board.id%}" onclick="update_delete_confirm()">수정</a>
+                <!-- <a href="{%url 'delete' board.id%}">삭제</a> -->
+                <a id="delete" href="javascript:update_delete_confirm()">삭제</a>
                 {%else%}
                 <div class="none_display">
                     <a href="#" onclick="Unauthorized()">수정</a>

@@ -40,8 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mainapp.apps.MainappConfig',
     'boardapp.apps.BoardappConfig',
-    'loginapp.apps.LoginappConfig',
-    'professorapp.apps.ProfessorappConfig',
+    'loginapp.apps.LoginappConfig',   
     'hitcount',
 
     # allauth
@@ -49,8 +48,6 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     # provider
-    'allauth.socialaccount.providers.kakao',
-    'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -98,6 +95,7 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -117,9 +115,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko-kr'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
@@ -132,20 +130,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-
-STATICFILES_DIR = [
-    os.path.join(BASE_DIR, 'static'),
-]
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-# STATIC_URL = '/media/'
-# STATICFILES_DIR = [os.path.join(BASE_DIR, 'static')]
-# AUTHENTICATION_BACKENDS = (
-#    'django.contrib.auth.backends.ModelBackend',
-#    'allauth.account.auth_backends.AuthenticationBackend',
-# )
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'homepage','static'),
+    os.path.join(BASE_DIR, 'mainapp','static'),
+]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 SITE_ID = 1
 LOGIN_REDIRECT_URL ='/'

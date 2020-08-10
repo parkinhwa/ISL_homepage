@@ -1,7 +1,100 @@
 {%extends 'base.html'%}
 {% load static %}
 {% block contents %}
+{% load static %}
+
+<head>
+    <style>
+        @font-face {
+            font-family: 'YESGothic-Bold';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_13@1.0/YESGothic-Bold.woff') format('woff');
+            font-weight: normal;
+        }
+
+        @font-face {
+            font-family: 'YESGothic-Regular';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_13@1.0/YESGothic-Regular.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        h3 {
+            list-style-type: none;
+            padding: 20px 0;
+            border-bottom: 1px solid darkslategrey;
+            font-family: 'YESGothic-Bold';
+            font-size: 20px;
+            color: darkslategray;
+
+        }
+
+        P {
+            font-family: 'YESGothic-Regular';
+            font-size: 16px;
+            color: darkslategray;
+        }
+
+        img {
+            float: left;
+            top: 0;
+            left: 0;
+            border-radius: 50%;
+            margin: 5px;
+            margin-right: 50px;
+        }
+
+        #card {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
 <body>
-    <div class="container">메인 페이지</div>
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div style="margin-top: 180px;">
+                        <h1>Intelligent System Lab</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="row" id="card">
+            <div class="col-md-6">
+                <div
+                    class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="col p-3 d-felx flex-column position-static">
+                        <h3>랩실 소개</h3>
+
+                        <P class="card-text mb-auto">Android, Java를 주로 다루고있으며 웹, 앱, 서버 개발등을 하고있습니다....<br>
+                            음<br>
+                            아<br><br><br><br><br><br></P>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div
+                    class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="col p-3 d-felx flex-column position-static">
+                        <h3>담당 교수 소개</h3>
+
+                        <img src="{% static 'mainapp/img/professor.jpg'%}">
+                        <P> 김차종 교수님<br><br>
+                            전공분야 : 컴퓨터그래픽, 정보공학<br>
+                            관련교과목 : 컴퓨터그래픽스, Linux/Linux System, JAVA<br>
+                            연구실 : N4동 609호<br>                            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <table class="table">
+            <th>테이블</th>
+        </table>
+    </div>
 </body>
 {% endblock %}

@@ -2,16 +2,16 @@ from django.db import models
 from django.conf import settings
 from django.utils import timezone
 from hitcount.models import HitCount, HitCountMixin
+from django.contrib.auth.models import User
 # Create your models here.
 
 class DjangoBoard(models.Model,HitCountMixin):
-      subject = models.CharField(max_length=50, blank=True)
-      name = models.CharField(max_length=50, blank=True)
-      nick_name = models.CharField(max_length=50, blank=True)
-      created_date = models.DateField(null=True, blank=True)
-      memo = models.CharField(max_length=200, blank=True)
+      subject = models.CharField(max_length=50, null=True)
+      content = models.CharField(max_length=50, null=True)
+      author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+      created_date = models.DateField('date_published')
       hits = models.IntegerField(default=0)
-      photo = models.ImageField(upload_to='images/', null=True)
+      file = models.FileField(upload_to="%Y/%m/%d", null=True, blank=True)
 
       
       def __str__(self):

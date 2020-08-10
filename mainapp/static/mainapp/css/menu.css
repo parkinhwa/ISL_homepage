@@ -27,7 +27,11 @@ nav{
   }
 
 header{
+<<<<<<< HEAD
     background-image: url('/media/img/feathers-5163670_1920.jpg');
+=======
+    background-image: url("/static/mainapp/img/menu.jpg");
+>>>>>>> lee
     font-family: 'GmarketSansBold';
     height: 400px;
     }
