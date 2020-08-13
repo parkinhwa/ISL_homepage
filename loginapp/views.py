@@ -14,20 +14,27 @@ from django.db import transaction
 def sign_up(request):
     if request.method == 'POST':
         signup_form = SignupForm(request.POST)
-        profile_form = ProfileForm(request.POST)
-        if signup_form.is_valid() and profile_form.is_valid():
+        #profile_form = ProfileForm(request.POST)
+        if signup_form.is_valid(): #and profile_form.is_valid():
+            
             signup_form.signup()
-            profile_form.profile_save(User.objects.get(username=signup_form.cleaned_data['username']))
+            signup_form.profile_save(User.objects.get(username=signup_form.cleaned_data['username']))
             return redirect('home')
         else:
-            print('error' + str(signup_form.is_valid()) + str(profile_form.is_valid()))
+            print(str(signup_form.is_valid())) #+ str(profile_form.is_valid()))
+            if 'ID 중복 확인' in request.POST:
+                signup_form.clean_username()
+                print('error')
+
     else:
         signup_form=SignupForm()
-        profile_form = ProfileForm()
+        #profile_form = ProfileForm()
     
-    return render(request,'sign_up.html', {'signup_form':signup_form, 'profile_form':profile_form})
+    return render(request,'sign_up.html', {'signup_form':signup_form,}) #'profile_form':profile_form})
     # 실패하는경우 sign_up.html에 머문다.
 
+def id_check(request):
+    pass
 def sign_in(request):
     if request.method == 'POST':
         username = request.POST['username']

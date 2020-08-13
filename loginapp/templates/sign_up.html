@@ -42,32 +42,27 @@
 
         <div>
         {{signup_form.username}}
-        <button class="btn btn-primary btn-block" type="button">본인 확인</button>
+            {{signup_form.username.errors}}
+            <input class="btn btn-lg btn-primary btn-block"type="submit" name="id_check" value="ID 중복 확인">
+                    
         </div>
         <br>
         {{signup_form.password1}}
         <br>
         {{signup_form.password2}}
+        {{signup_form.password2.errors}}
         <br>
-        {{profile_form.name}}
+        {{signup_form.name}}
         <br>
-        {{profile_form.student_ID}}
+        {{signup_form.student_ID}}
         <br>
-        {{profile_form.email}}
+        {{signup_form.email}}
+        {{signup_form.email.errors}}
         <br>
-        {% for field in signup_form %}
-            {% if field.errors %}
-				{% for error in field.errors %}
-	    		    <span class="help-block">{{ error }}</span>
-				{% endfor %}
-            {% endif %}
-        {% endfor %}
-        {% if signup_form.non_field_errors %}
-			{% for error in signup_form.non_field_errors %}
-			<p class="text-danger"><b>{{ error }}</b></p>
-			{% endfor %}
-		{% endif %}
-        <button class="btn btn-lg btn-primary btn-block" type="submit" value="Sign Up!" >회원가입</button>
+        
+
+       
+        <input class="btn btn-lg btn-primary btn-block"type="submit" name="id_check" value="회원가입">
     </form>
 
 

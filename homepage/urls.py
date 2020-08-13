@@ -23,10 +23,6 @@ urlpatterns = [
     path('sign_in',loginapp.views.sign_in,name="sign_in"),
     path('logout',loginapp.views.logout, name="logout"),
     path('accounts/',include('allauth.urls')),
-<<<<<<< HEAD
+    path('id_check/', loginapp.views.id_check, name='id_check'),
 ]
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
-=======
-] 
-urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
->>>>>>> lee
