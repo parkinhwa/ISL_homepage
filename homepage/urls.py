@@ -20,6 +20,7 @@ urlpatterns = [
     path('sign_in',loginapp.views.sign_in,name="sign_in"),
     path('logout',loginapp.views.logout, name="logout"),
     path('dataroom/', boardapp.views.dataroom, name="dataroom"),
-    path('accounts/',include('allauth.urls')),
+    path('download/<int:pk>', boardapp.views.file_download, name="file_download"),
+    # path('accounts/',include('allauth.urls')),
 ]
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

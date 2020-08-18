@@ -51,6 +51,9 @@
                     <a href="#" onclick="Unauthorized()">삭제</a>
                 </div>
                 {%endif%}
+                {% if board.upload_files %}
+                <a href="{% url 'file_download' board.id %}">첨부파일 다운로드</a>
+                {%endif%}
             </div>
         </div>
     </div>

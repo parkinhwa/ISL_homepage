@@ -4,6 +4,8 @@ from .models import DjangoBoard
 from .forms import DjangoBoardForm
 from django.utils import timezone
 from django.core.paginator import Paginator
+from django.http import HttpResponse, Http404
+import urllib, os, mimetypes
 def board(request):
     boards = DjangoBoard.objects
     
@@ -41,6 +43,9 @@ def create(request):
             post = form.save(commit=False)
             post.created_date = timezone.now()
             post.author = request.user
+            if request.FILES:
+                if 'upload_files' in request.FILES.keys():
+                    post.filename = request.FILES['upload_files'].name
             post.save()
             form.save()
             return redirect('/board/')
@@ -49,29 +54,6 @@ def create(request):
             # 단순히 입력받을 수 있는 form을 띄우기
             form = DjangoBoardForm()
             return render(request, 'write.html',{'form':form})
-    #    글쓰기 페이지를 띄워주는 역할 == GET(!=POST)
-
-# def create(request):
-
-    # if request.method == 'POST':
-    #     djangoboard = DjangoBoard()
-        # if request.FILES['file'] is None:
-        #     djangoboard = request.FILES['file']
-        # else:
-        #     _, file = request.FILES.popitem()
-        #     file = file[0]
-        #     djangoboard.file = file
-        # _, file = request.FILES.popitem()
-        # file = file[0]
-        # djangoboard.file = file
-        # djangoboard.subject = request.POST['title']
-        # djangoboard.content = request.POST['body']
-        # djangoboard.author = request.user
-        # djangoboard.created_date = timezone.datetime.now()
-        
-        
-        # djangoboard.save()
-        # return redirect('/board/')
 
 def update(request, board_id):
     board_detail = get_object_or_404(DjangoBoard,pk=board_id)
@@ -103,8 +85,17 @@ def edit(request, board_id):
     board_detail = get_object_or_404(DjangoBoard,pk=board_id)
     return render(request, 'edit.html',{'board':board_detail} )
 
-def download(request, file_name):
-    return response
+def file_download(request, pk):
+    post = get_object_or_404(DjangoBoard, pk=pk)
+    url = post.upload_files.url[1:]
+    file_url = urllib.parse.unquote(url)
+    if os.path.exists(file_url):
+        with open(file_url, 'rb') as fh:
+            quote_file_url = urllib.parse.quote(post.filename.encode('utf-8'))
+            response = HttpResponse(fh.read(), content_type=mimetypes.guess_type(file_url)[0])
+            response['Content-Disposition'] = 'attachment;filename*=UTF-8\'\'%s' % quote_file_url
+            return response
+    return Http404
 
 def dataroom(request):
     return render(request, 'data_room.html')

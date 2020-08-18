@@ -10,10 +10,22 @@
         #write {
             font-size: 16px;
         }
+
+        .table_th {
+            width: 10%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .board_form {
+            width: 100%;
+        }
+        #write_container{
+            margin-top: 100px;
+        }
     </style>
 </head>
 <script>
-
     function cancle_confirm(url) {
         var cancle = confirm('글 작성을 취소할까요?');
         if (cancle == true) {
@@ -21,21 +33,9 @@
         }
     }
 </script>
-<style>
-    .table_th {
-        width: 10%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .board_form {
-        width: 100%;
-    }
-</style>
 
 <body>
-    <br>
-    <div class="container">
+    <div class="container" id="write_container">
         <form action="{%url 'create'%}" method="POST" enctype="multipart/form-data">
             {%csrf_token%}
 
@@ -57,7 +57,7 @@
                         <th scope="row" class="table_th">첨부파일</th>
                         <td colspan="2">
                             <!-- <div class="form-group"> -->
-                            {{form.file}}
+                            {{form.upload_files}}
                             <!-- <input type="file" name='file' class="form-control-file" id="exampleFormControlFile1"> -->
                             <!-- </div> -->
                         </td>

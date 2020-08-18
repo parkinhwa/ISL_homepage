@@ -46,9 +46,9 @@ INSTALLED_APPS = [
 
 
     # allauth
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
+    # 'allauth',
+    # 'allauth.account',
+    # 'allauth.socialaccount',
     # provider
 ]
 
@@ -137,6 +137,7 @@ MEDIA_URL = '/media/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'homepage','static'),
     os.path.join(BASE_DIR, 'mainapp','static'),
+    os.path.join(BASE_DIR, 'boardapp','static'),
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
