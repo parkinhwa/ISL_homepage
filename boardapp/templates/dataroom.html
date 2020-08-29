@@ -1,49 +1,61 @@
 {% extends 'base.html' %}
 {% block contents %}
+{% load static %}
 <head>
-    <style>
-        body{
-            font-size: 16px;
-        }
-        #write{
-            font-size: 16px;
-        }
-        .searchbox{
-           margin: 70px 290px;
-        }
-        hr{ 
-           margin-top: 30px;
-           color:black;
-        }
-    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'boardapp/dataroom.css' %}">
 </head>
 <body>
-    <div class="searchbox">
-        <hr>
-        <div class="header">
-        <input onkeyup="filter()" type="text" id="value" placeholder="Type to Search">
+    <div class="dataroom">
+        <div class="aside">
+        <h4 id="title">자료실</h4>
         </div>
+    <section>
+        <article>
+    <div> 
+        <box class="search">
+        <span class="name">과목선택
+            <input class="subject" type="text" disabled tabindex="-1">
+            <button class="icon" id="Search" style="background-color: white;" data-toggle="modal" data-target="#search"><i class="fa fa-search" style="border:none;"aria-hidden="true"></i></button>
+            <button class="icon" style="background-color: white;" data-toggle="modal" data-target="#plus"><i class="fa fa-plus" aria-hidden="true"></i></button> 
+        </span>
+        <span class="input-group-sm mb-1">항목
+            <select class="custom-select" id="inputGroup-sizing-sm" style="width:100px; height:35px; font-size:15px;">
+              <option value="1">중간</option>
+              <option value="2">기말</option>
+              <option value="3">과제</option>
+            </select>
+        </span>
+        <span class="name">년도
+            <input class="item" type="text">
+        </span>
+        <span class="name">제목
+            <input class="item" type="text">
+        </span>
+        <button type="submit" class="btn btn-light btn-sm" id="submit" style="margin-right:95px;">조회</button>
+            </box>
     </div>
-
-    <div class="container">
-        <table class="table table-striped">
+    </article>
+    <article>
+    <div class="container" id="board" style="margin-top:30px;">
+        <table class="type09">
             <thead>
                 <tr>
-                    <th>번호</th>
-                    <th>제목</th>
-                    <th>작성자</th>
-                    <th>작성일</th>
-                    <th>조회수</th>
+                    <th scope="cols">과목</th>
+                    <th scope="cols">항목</th>
+                    <th scope="cols">제목</th>
+                    <th scope="cols">년도</th>
+                    <th scope="cols">작성자</th>
                 </tr>
             </thead>
             <tbody>
                 {% for board in post %}
                 <tr>
-                    <td>{{board.id}}</td>
-                    <td><a href="{% url 'detail' board.id%}">{{board.subject}}</a>{{board.comments.count}}</td>
+                    <td><a style="color:black;" href="{% url 'detail' board.id%}">{{board.sub}}</a></td>
+                    <td>{{board.item}}</td>
+                    <td><a style="color:black;" href="{% url 'detail' board.id%}">{{board.title}}</a>{{board.comments.count}}</td>
+                    <td>{{board.year}}</td>
                     <td>{{board.name}}</td>
-                    <td>{{board.created_date}}</td>
-                    <td>{{board.hits}}</td> 
                 </tr>
                 {%endfor%}
             </tbody>
@@ -54,11 +66,11 @@
             <br><br>
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
-                    <a class="page-link" href="?page=1">처음</a>
+                    <a class="page-link" href="?page=1"><<</a>
                     {%if post.has_previous%}
-                    <a class="page-link" href="?page={{post.previous_page_number}}">이전</a>
+                    <a class="page-link" href="?page={{post.previous_page_number}}"><</a>
                     {% else %}
-                    <a class="page-link" href="#">이전</a>
+                    <a class="page-link" href="#"><</a>
                     {%endif%}
                     {% for page in page_range%}
                     {%if page == post.number%}
@@ -74,16 +86,60 @@
 
                     {% endfor %}
                     {%if post.has_next%}
-                    <a class="page-link" href="?page={{post.next_page_number}}">다음</a>
+                    <a class="page-link" href="?page={{post.next_page_number}}">></a>
                     {%else%}
-                    <a class="page-link" href="#">다음</a>
+                    <a class="page-link" href="#">></a>
                     {%endif%}
-                    <a class="page-link" href="?page={{post.paginator.num_pages}}">끝</a>
-                </ul>
-            </nav>
+                    <a class="page-link" href="?page={{post.paginator.num_pages}}">>></a>
+                    </ul>
+                </nav>
 
+            </div>
         </div>
+        </article>
+    </section>
+</div>
+
+ <!-- Modal -->
+ <div class="modal fade" id="search" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
     </div>
+  </div>
+
+ <!-- Modal -->
+ <div class="modal fade" id="plus" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
     </div>
+  </div>
 </body>
 {% endblock %}

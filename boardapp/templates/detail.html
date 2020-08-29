@@ -1,5 +1,7 @@
 {%extends 'base.html'%}
 {% block contents %}
+{%load static%}
+<head>
 <script>
     function delete_confirm() {
         var delete_c = confirm('정말 삭제하시겠습니까?');
@@ -7,46 +9,36 @@
             event.defaultPrevented();
         }
         else{
-            location.href="{%url 'delete' board.id%}"
+            location.href="{%url 'delete' dataroom.id%}"
         }
     }
 </script>
-<style>
-    #detail_title {
-        font-weight: bold;
-        font-size: 25px;
-    }
-
-    .none_display {
-        display: none;
-    }
-    body{
-            font-size: 16px;
-        }
-    #write{
-            font-size: 16px;
-        }
-</style>
-
+<link rel="stylesheet" href="{% static 'boardapp/detail.css' %}">
+</head>
 <body>
     <div class="container">
+        <div class="aside">
+            <h4 id="title">자료실</h4>
+            <h10 id="sertitle"> HOME > 자료실 > {{dataroom.sub}}</h10>
+        </div>
         <div class="card">
             <div class="card-body">
-                <div class="none_display">{{board.hit_update_counter}}</div>
-                <div id="detail_title">{{board.subject}}</div>
-                <div>{{board.created_date}}</div>
+            <div class="data">
+                <div id="detail_sub">{{dataroom.sub}}</div>
+                <span id="detail_item" >{{dataroom.item}}</span>
+                <span id="detail_name" class="right">{{dataroom.name}}</span>
+                <span id="detail_year" class="right">{{dataroom.year}}</span>
                 <hr>
-                <div>
-                    {{board.memo}}
-                </div>
-                {%if user.username == board.name%}
-                <a href="{%url 'update' board.id%}" onclick="delete_confirm()">수정</a>
-                <!-- <a href="{%url 'delete' board.id%}">삭제</a> -->
-                <a href="javascript:delete_confirm()">삭제</a>
+                <div id="detail_title">{{dataroom.title}}</div>
+                <div id="file">첨부파일</div>
+            </div>
+                {%if user.username == dataroom.name%}
+                <button class="btn btn-light btn-sm" id="button"><a href="javascript:delete_confirm()">삭제</a></button>
+                <button class="btn btn-light btn-sm" id="button"><a href="{%url 'update' dataroom.id%}" onclick="delect_confirm()">수정</a></button>
                 {%else%}
                 <div class="none_display">
-                    <a href="#" onclick="Unauthorized()">수정</a>
-                    <a href="#" onclick="Unauthorized()">삭제</a>
+                    <button class="btn btn-light btn-sm" onclick="Unauthorized()">수정</button>
+                    <button class="btn btn-light btn-sm" onclick="Unauthorized()">삭제</button>
                 </div>
                 {%endif%}
             </div>

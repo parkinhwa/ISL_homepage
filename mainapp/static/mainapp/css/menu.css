@@ -18,7 +18,9 @@ html,
 h4{float:left;}
 
 nav{
-    background:rgb(204, 253, 238);
+    background:white;
+    height:54px;
+    border-bottom: 1px solid gray;
   }
 h6{
   color:white;
@@ -44,3 +46,42 @@ h6{
   margin-right: 5px;
   border-radius: 0%;
  }
+
+ @font-face {
+  font-family: 'GmarketSansBold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GoyangDeogyang';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/GoyangDeogyang.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GoyangIlsan';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/GoyangIlsan.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}
+#mainNav{
+  border-bottom: 1px solid rgba(132, 138, 145, 0.308);
+}

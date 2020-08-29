@@ -1,8 +1,10 @@
 {%extends 'base.html'%}
 {% block contents %}
 <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         body{
+            margin-top: 60px;
             font-size: 16px;
         }
         #write{
@@ -21,9 +23,25 @@
 </script>
 <style>
     .table_th {
-        width: 100px;
+        width: 120px;
         margin-left: auto;
         margin-right: auto;
+    }
+    #title{
+    font-family: 'YESGothic-Regular';
+    margin-top: 25px;
+    margin-left:70px;
+    color:white;
+    }
+    .aside{
+    margin-left:0px;
+    height:90px;
+    background-color:darkslategray;
+    }
+    .custom-select{
+        width:24%;
+        height:40px;
+        font-size:16px;
     }
 </style>
 
@@ -37,25 +55,57 @@
             <br>
             <input type="submit" value="제출하기"> -->
         <!-- <form action="{%url 'create'%}"> -->
+        <div class="aside">
+            <h4 id="title">글쓰기</h4>
+        </div>
         <form action="{%url 'create'%}">
             <table class="table table-bordered">
                 <tbody>
                     <tr>
-                        <th scope="row" class="table_th">제목</th>
+                        <th scope="row" class="table_th">과목</th>
                         <td>
-                            <div><input style="width:100%;" type="text" name="title"></div>
+                            <div>
+                                <input style="width:20%;" type="text" name="sub">
+                                <button class="icon" style="background-color: white;"><i class="fa fa-search" aria-hidden="true"></i></button>
+                            </div>
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row" class="table_th">내용</th>
-                        <td><textarea class="form_control" style="width:100%;" rows="10" name="body"></textarea></td>
+                        <th scope="row" class="table_th">항목</th>
+                        <td>
+                            <div> 
+                                <select class="custom-select" id="inputGroup-sizing-sm" name="item">
+                                <option>중간</option>
+                                <option>기말</option>
+                                <option>과제</option>
+                            </select>
+                        </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="table_th">년도</th>
+                        <td>
+                            <div><input style="width:50%;" type="text" name="year"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="table_th">제목</th>
+                        <td>
+                            <div><input style="width:50%;" type="text" name="title"></div>
+                        </td>
                     </tr>
                     <tr>
                         <th scope="row" class="table_th">첨부파일</th>
-                        <td colspan="2">
+                        <td>
                             <div class="form-group">
                                 <input type="file" class="form-control-file" id="exampleFormControlFile1">
                             </div>
+                            <!-- <div class="input-group mb-3">
+                                <div class="custom-file">
+                                  <input type="file" class="custom-file-input" id="exampleFormControlFile1" aria-describedby="inputGroupFileAddon01">
+                                  <label class="custom-file-label" for="inputGroupFile01">파일 선택</label>
+                                </div>
+                              </div> -->
                         </td>
                     </tr>
                 </tbody>

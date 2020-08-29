@@ -1,0 +1,79 @@
+@font-face { font-family: 'YESGothic-Regular'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_13@1.0/YESGothic-Regular.woff') format('woff'); font-weight: normal; font-style: normal; }
+body{
+    font-size: 16px;
+}
+#write{
+    font-size: 16px;
+}
+#board{
+    font-family: 'YESGothic-Regular';
+}
+hr{ 
+   margin-top: 30px;
+   color:darkslategray;
+}
+.name{
+    padding-right: 10px;
+    font-family: 'YESGothic-Regular';
+    color:darkslategray;
+}
+.subject{
+    background-color: rgb(228, 228, 228);
+    width:100px;
+}
+.item{
+    width:100px;
+}
+#submit{
+    float:right;
+    font-size: 16px;
+    margin-top: 13px;
+}
+table.type09 {
+    font-family: 'YESGothic-Regular';
+    border-collapse: collapse;
+    text-align: left;
+    line-height: 1.5;
+
+}
+table.type09 thead th {
+    padding: 10px 20px;
+    font-weight: bold;
+    vertical-align: top;
+    color: darkslategray;
+    border-bottom: 3px solid darkslategray;
+}
+
+table.type09 td {
+    width: 350px;
+    padding: 20px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+}
+#title{
+    font-family: 'YESGothic-Regular';
+    margin-top: 75px;
+    margin-left:70px;
+    color:white;
+}
+.search{
+    width:500px;
+    height:30px;
+    margin:0px 55px;  
+    padding:50px;
+}
+.aside{
+    margin-left:400px;
+    width:1110px;
+    height:140px;
+    background-color:darkslategray;
+}
+section{
+    margin-top:30px;
+    width:1300px;
+    position:absolute;
+    margin-left:305px
+}
+.page-link{
+    color:darkslategray;
+}

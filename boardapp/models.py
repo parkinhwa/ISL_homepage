@@ -18,3 +18,22 @@ class DjangoBoard(models.Model,HitCountMixin):
       def hit_update_counter(self):
           self.hits = self.hits + 1
           self.save()
+
+class SubBoard(models.Model):
+    subname = models.CharField(max_length=50, blank=True)
+
+    def __str__(self):
+        return self.subname
+
+class DataroomBoard(models.Model):
+    sub = models.CharField(max_length=50, blank=True)
+    item = models.CharField(max_length=10)
+    name = models.CharField(max_length=50, blank=True)
+    year = models.DateField()
+
+class DataRoom(models.Model):
+    sub = models.CharField(max_length=50, blank=True)
+    item = models.CharField(max_length=10)
+    title = models.CharField(max_length=50, blank=True)
+    year = models.DateField()
+    name = models.CharField(max_length=50, blank=True)

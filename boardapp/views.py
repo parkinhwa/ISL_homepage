@@ -1,17 +1,28 @@
 import math
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import DjangoBoard
+from .models import DjangoBoard, SubBoard, DataRoom
 # from .forms import NewDjangoBoard
 from django.utils import timezone
 from django.core.paginator import Paginator
 # Create your views here.
-def dataroom(request):
-    return render(request,'dataroom.html')
-    
 def board(request):
-    boards = DjangoBoard.objects
+    return render(request,'board.html')
+
+def subject(request):
+    subboard = SubBoard.objects.all() 
+    return render(request,'Subject.html', {'subboard':subboard})
+
+def sub_insert(request):
+    if request.method == 'POST':
+        subboard = SubBoard()
+        subboard.subname = request.POST['subname']
+        subboard.save()
+        return redirect('/Subject/')
+
+def dataroom(request):
+    boards = DataRoom.objects
     
-    board_list = DjangoBoard.objects.all().order_by('-id')
+    board_list = DataRoom.objects.all().order_by('-id')
     # 게시판 모든 글들을 대상으로 한다.
     num = 5
     paginator = Paginator(board_list, num)
@@ -32,7 +43,7 @@ def board(request):
 
     page_range = paginator.page_range[start_index:end_index]    
     
-    return render(request, 'board.html', {'boards':boards, 'post':post,'page_range':page_range,'board_list':board_list})
+    return render(request, 'dataroom.html', {'boards':boards, 'post':post,'page_range':page_range,'board_list':board_list})
 
 
 # def create(request):
@@ -57,42 +68,45 @@ def board(request):
 #     #    글쓰기 페이지를 띄워주는 역할 == GET(!=POST)
 
 def create(request):
-    djangoboard = DjangoBoard()
-    djangoboard.subject = request.GET['title']
-    djangoboard.memo = request.GET['body']
-    djangoboard.name = request.user
-    djangoboard.created_date = timezone.datetime.now()
-    djangoboard.save()
-    return redirect('/board/')
+    dataroom = DataRoom()
+    dataroom.sub = request.GET['sub']
+    dataroom.item = request.GET['item']
+    dataroom.title = request.GET['title']
+    dataroom.year = request.GET['year']
+    dataroom.name = request.user
+    dataroom.save()
+    #글 쓴 뒤에 dataroom으로 돌아감
+    return redirect('/dataroom/')
 
 def update(request, board_id):
-    board_detail = get_object_or_404(DjangoBoard,pk=board_id)
+    board_detail = get_object_or_404(DataRoom,pk=board_id)
     if request.method == "POST":
         # 수정할 게시판의 글 객체 가져오기
-        board_detail.subject = request.POST['edit_title']
-        board_detail.memo = request.POST['edit_body']
-        board_detail.created_date = timezone.datetime.now()
+        board_detail.sub = request.POST['edit_subject']
+        board_detail.item = request.POST['edit_item']
+        board_detail.year = timezone.datetime.now()
+        board_detail.title = request.POST['edit_title']
         board_detail.save()
-        return redirect('board')
+        return redirect('dataroom')
     else:
-        return render(request, 'edit.html',{'board':board_detail} )
+        return render(request, 'edit.html',{'dataroom':board_detail} )
     #해당하는 게시판의 글 객체 pk에 맞는 입력공간
     
     
 
 
 def delete(request, board_id):
-    board_detail = get_object_or_404(DjangoBoard,pk=board_id)
+    board_detail = get_object_or_404(DataRoom,pk=board_id)
     board_detail.delete()
-    return redirect('board')
+    return redirect('dataroom')
 
 def detail(request, board_id):
-    board_detail = get_object_or_404(DjangoBoard,pk=board_id)
-    return render(request, 'detail.html',{'board':board_detail})
+    board_detail = get_object_or_404(DataRoom,pk=board_id)
+    return render(request, 'detail.html',{'dataroom':board_detail})
 
 def write(request):
     return render(request,'write.html')
 
 def edit(request, board_id):
-    board_detail = get_object_or_404(DjangoBoard,pk=board_id)
-    return render(request, 'edit.html',{'board':board_detail} )
+    board_detail = get_object_or_404(DataRoom,pk=board_id)
+    return render(request, 'edit.html',{'dataroom':board_detail} )

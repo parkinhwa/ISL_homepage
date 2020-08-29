@@ -14,55 +14,21 @@ html,
   margin-left: 15px;
   margin-right: 20px;
 }
-.nav-link:hover{
-  color:teal;
-}
 
-h1{font-size: 60px;
-    color: white;}
 h4{float:left;}
+
 nav{
     background:white;
-    height: 54px;
+    height:54px;
+    border-bottom: 1px solid gray;
   }
-
-header{
-    background-image: url("/static/mainapp/img/menu.jpg");
-    font-family: 'GmarketSansBold';
-    height: 400px;
-    }
 h6{
   color:white;
 }
-.inner-menu {
-    display:none;
-    position: absolute;
-    background: white;
-    list-style: none;
-    margin:0; padding:0px;}
 
-.inner-menu > li {
-    padding: 16px 35px;
-    font-family: 'GoyangDeogyang';
-    border-bottom: 1px solid darkslategrey;
-    font-size: 18px;
-    
-  }
-
-.inner-menu > li > a {
-    font-size: 16px;
-    color: darkslategrey;
-    text-decoration:none;
-    background-color: white;
-  }
-.inner-menu > li > a:hover{
-  color:teal;
-}
  #navbarDropdown{
    color: darkslategrey;
  }
-
- #outer-menu > li:hover > .inner-menu {display:block;}
  
  #login{
   font-family: 'GoyangIlsan';
@@ -80,3 +46,42 @@ h6{
   margin-right: 5px;
   border-radius: 0%;
  }
+
+ @font-face {
+  font-family: 'GmarketSansBold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GoyangDeogyang';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/GoyangDeogyang.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GoyangIlsan';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/GoyangIlsan.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}
+#mainNav{
+  border-bottom: 1px solid rgba(132, 138, 145, 0.308);
+}
